@@ -16,8 +16,10 @@ export class PaymentsService {
                 amount: createPaymentDto.amount,
                 currency: createPaymentDto.currency,
                 status: 'PENDING',
-                providerPaymentId: 'fake_provider_id', // depois vem da Stripe
+                providerPaymentId: crypto.randomUUID(), // depois vem da Stripe
             },
         });
+
+        return payment;
     }
 }
