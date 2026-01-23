@@ -19,7 +19,8 @@ export class StripeService {
         amount: number;
         currency: string;
         paymentMethodId?: string; // opicional se for confirmar depois
-        confirm?: boolean; 
+        confirm?: boolean;
+        //returnUrl?: string; 
     }): Promise<Stripe.PaymentIntent> {
         const { amount, currency, paymentMethodId, confirm } = params;
 
@@ -28,9 +29,15 @@ export class StripeService {
             currency: currency.toLocaleLowerCase(),
             payment_method: paymentMethodId,
             confirm: confirm ?? false, //se confirm ñ foi passado == false
-            automatic_payment_methods: paymentMethodId ? undefined : { enabled: true },
+            //automatic_payment_methods: paymentMethodId ? undefined : { enabled: true },
             //se foi informado == undefined ; se não foi informado deixa stripe decidir
             // permite tanto fluxo “cria e confirma” quanto “cria agora, confirma depois
+            //return_url: returnUrl,
+
+            // redirecionamneto desabilitado
+            automatic_payment_methods: paymentMethodId 
+                ? { enabled: true, allow_redirects: 'never' } // adicionar isso
+                : { enabled: true },
         });
     }
 }

@@ -5,5 +5,5 @@ Content-Type: application/json
 {
     "amount": 1000,
     "currency": "BRL",
-    "paymentMethod": "pm_test_123"
+    "paymentMethod": "pm_card_visa"
 }

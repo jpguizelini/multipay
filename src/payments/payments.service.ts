@@ -17,7 +17,7 @@ export class PaymentsService {
             amount: dto.amount,
             currency: dto.currency,
             paymentMethodId: dto.paymentMethod,
-            confirm: true, // rever qual fluxo quero
+            confirm: true, // atenção
         });
 
         const status = intent.status === 'succeeded' ? 'SUCCEEDED' : 'PENDING';
