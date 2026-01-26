@@ -105,9 +105,7 @@ Cria um novo pagamento via Stripe Payment Intent.
 ## 📝 Scripts Disponíveis
 
 - `npm run start:dev` - Inicia em modo desenvolvimento (watch)
-- `npm run start:prod` - Inicia em modo produção
 - `npm run build` - Compila o projeto
-- `npm run test` - Executa testes unitários
 - `npm run lint` - Verifica código com ESLint
 - `npm run seed` - Popula banco com dados iniciais
 - `npm run db:reset` - Reseta banco e executa seed
