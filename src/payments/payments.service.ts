@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { StripeService } from 'src/stripe/stripe.service';
+import { PaymentStatus } from '../../generated/prisma/enums';
 
 @Injectable()
 export class PaymentsService {
@@ -34,5 +35,20 @@ export class PaymentsService {
         });
 
         return payment;
+    }
+
+    async findAll(query: { status?: PaymentStatus, limit?: number, offset?: number }) {
+        const tenantId = 'demo-tenant';
+
+        return this.prisma.payment.findMany({
+            where: {
+                tenantId,
+                ...(query.status && { status: query.status })
+            },
+            orderBy: {createdAt: 'desc'},
+            take: query.limit ?? 50,
+            skip: query.offset ?? 0,
+            include: { tenant: { select: { name: true } } }
+        });
     }
 }
