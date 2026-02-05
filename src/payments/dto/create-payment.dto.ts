@@ -7,7 +7,7 @@ export class CreatePaymentDto {
     
     @IsNotEmpty()
     @IsString()
-    @IsIn(['BRL'])
+    @IsIn(['BRL','USD','EUR'])
     currency: string; // "BRL"
     
     @IsNotEmpty()
