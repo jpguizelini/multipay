@@ -16,8 +16,5 @@ Content-Type: : application/json
 ### Listar apenas pagamentos SUCEDIDOS
 GET http://localhost:3000/payments?status=SUCCEEDED
 
-### Listar apenas pagamentos PENDENTES
-GET http://localhost:3000/payments?status=PENDING
-
-### Listar apenas pagamentos FALHADOS
-GET http://localhost:3000/payments?status=FAILED
+### Detalhes de um pagamento 
+GET http://localhost:3000/payments/a695e68f-b75c-4b96-9e9d-4098d6b13e8f

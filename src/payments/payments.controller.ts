@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Param, NotFoundException } from '@nestjs/common';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { PaymentsService } from './payments.service';
 import { PaymentStatus } from '../../generated/prisma/enums';
@@ -28,5 +28,14 @@ export class PaymentsController {
         }
         
         return this.paymentsService.findAll({ status: paymentStatus });
+    }
+
+    @Get(':id')
+    async findOne(@Param('id') id: string) {
+        const payment = await this.paymentsService.findOne(id);
+        if(!payment) {
+            throw new NotFoundException(`Pagamento com id${id} não encontrado.`);
+        }
+        return payment;
     }
 }

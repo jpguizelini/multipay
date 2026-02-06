@@ -51,4 +51,23 @@ export class PaymentsService {
             include: { tenant: { select: { name: true } } }
         });
     }
+
+    async findOne(id: string) {
+        const tenantId = 'demo-tenant';
+
+        return this.prisma.payment.findFirst({
+            where: {
+                id,
+                tenantId, // só retorna se for do tenant
+            },
+            include: {
+                tenant: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+            },
+        });
+    }
 }
